@@ -19,5 +19,5 @@
       <graphic>
          <TextField fx:id="ciudad" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Introduce ciudad" />
       </graphic></Label>
-    <Button fx:id="searchButton" contentDisplay="CENTER" onAction="#onSearchButtonClick" style="-fx-background-color: bluelight;" text="Buscar" underline="true" />
+    <Button fx:id="searchButton" contentDisplay="CENTER" onAction="#onSearchButtonClick" style="-fx-background-color:white;" text="Buscar" underline="true" />
 </VBox>
