@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherapp.WeatherController">
+    <Label fx:id="ciudadLabel" text="Tiempo en Ciudad" />
+    <!-- Otros elementos para mostrar información del tiempo -->
+    <Label text="Temperatura: 25°C" />
+    <Label text="Cielo despejado" />
+    <!-- Agrega más etiquetas según sea necesario -->
+</VBox>
