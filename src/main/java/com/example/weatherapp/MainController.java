@@ -38,8 +38,8 @@ public class MainController {
                 weatherController.initialize(ciudadStr);
             }
             Stage weatherStage = new Stage();
-            weatherStage.setScene(new Scene(weatherController.getView()));
-            weatherStage.setTitle("Información del tiempo en " + ciudadStr);
+            weatherStage.setScene(new Scene(weatherController.getView(),300,300));
+            weatherStage.setTitle("WeatherApp " + ciudadStr);
             weatherStage.show();
 
         } catch (IOException e) {

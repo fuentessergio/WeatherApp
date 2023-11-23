@@ -38,7 +38,5 @@ public class SearchController {
         this.helloApplication = helloApplication;
         this.searchStage = searchStage;
         this.mainController = mainController;
-
-
     }
 }

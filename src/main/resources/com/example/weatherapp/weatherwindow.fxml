@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherapp.WeatherController">
-    <Label fx:id="ciudadLabel" text="Tiempo en Ciudad" />
-    <!-- Otros elementos para mostrar información del tiempo -->
-    <Label text="Temperatura: 25°C" />
-    <Label text="Cielo despejado" />
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.weatherapp.WeatherController">
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <ImageView fx:id="imagenTiempo" fitHeight="89.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@sol.jpg" />
+              </image>
+         </ImageView>
+      </children>
+   </HBox>
+   <VBox prefHeight="200.0" prefWidth="100.0">
+      <children>
+          <Label text="Cielo despejado" />
+          <!-- Otros elementos para mostrar información del tiempo -->
+          <Label text="Temperatura: 25°C" />
+          <Label fx:id="ciudadLabel" text="Tiempo en Ciudad" />
+      </children>
+   </VBox>
     <!-- Agrega más etiquetas según sea necesario -->
 </VBox>
