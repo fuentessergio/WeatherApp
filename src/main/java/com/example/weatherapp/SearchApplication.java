@@ -8,26 +8,25 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class SearchApplication extends Application {
 
     private MainController mainController;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SearchApplication.class.getResource("hello-view.fxml"));
         Parent root = fxmlLoader.load();
 
         // Obtén el controlador de búsqueda y configura la instancia de HelloApplication
         SearchController searchController = fxmlLoader.getController();
-
-        mainController = new MainController(searchController, WeatherController.create(""));
-        searchController.setHelloApplication(this, stage, mainController);
+        mainController = new MainController(searchController, new WeatherController());
+        searchController.setMainController(mainController);
+        searchController.setSearchStage(stage);
 
         Scene scene = new Scene(root, 320, 240);
         stage.setTitle("Búsqueda de ciudad");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public MainController getMainController() {

@@ -6,44 +6,54 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
-    private SearchController searchController;
-    private WeatherController weatherController;
+        private SearchController searchController;
+        private WeatherController weatherController;
 
-    public MainController(SearchController searchController, WeatherController weatherController) {
-        this.searchController = searchController;
-        this.weatherController = weatherController;
-    }
+        public MainController(SearchController searchController, WeatherController weatherController) {
+            this.searchController = searchController;
+            this.weatherController = weatherController;
+        }
 
-    public SearchController getSearchController() {
-        return searchController;
-    }
+        public SearchController getSearchController() {
+            return searchController;
+        }
 
-    public void setSearchController(SearchController searchController) {
-        this.searchController = searchController;
-    }
+        public void setSearchController(SearchController searchController) {
+            this.searchController = searchController;
+        }
 
-    public WeatherController getWeatherController() {
-        return weatherController;
-    }
+        public WeatherController getWeatherController() {
+            return weatherController;
+        }
 
-    public void setWeatherController(WeatherController weatherController) {
-        this.weatherController = weatherController;
-    }
-    public void onSearchButtonClick(String ciudadStr){
-        searchController.onSearchButtonClick(ciudadStr);
-        try {
-            if(weatherController == null){
-                weatherController = WeatherController.create(ciudadStr);
-            } else {
-                weatherController.initialize(ciudadStr);
+        public void setWeatherController(WeatherController weatherController) {
+            this.weatherController = weatherController;
+        }
+
+        public void onSearchButtonClick (String ciudadStr){
+            if(ciudadStr.isEmpty()){
+                System.out.println("Introduce alguna ciudad, por favor");
             }
-            Stage weatherStage = new Stage();
-            weatherStage.setScene(new Scene(weatherController.getView(),300,300));
-            weatherStage.setTitle("WeatherApp " + ciudadStr);
-            weatherStage.show();
+        }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        public void handleSearchButtonClick(String ciudadStr) {
+            onSearchButtonClick(ciudadStr);
+
+            try {
+                if (weatherController == null) {
+                    weatherController = new WeatherController();
+                } else {
+                    weatherController.initialize(ciudadStr);
+                }
+
+                Stage weatherStage = weatherController.getWeatherStage();
+                if (!weatherStage.isShowing()) {
+                    weatherStage.show();
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            searchController.closeSearchStage();
         }
     }
-}

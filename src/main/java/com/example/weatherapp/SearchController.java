@@ -15,28 +15,28 @@ public class SearchController {
     @FXML
     private TextField ciudad;
 
-    private HelloApplication helloApplication;
-    private Stage searchStage;
     private MainController mainController;
-
+    private Stage searchStage;
 
     @FXML
     protected void onSearchButtonClick() {
         String ciudadStr = ciudad.getText();
-        // HelloApplication.showWeatherView(ciudadStr);
-        helloApplication.getMainController().onSearchButtonClick(ciudadStr);
+        mainController.handleSearchButtonClick(ciudadStr);
 
-        //Cierra la ventana de búsqueda
-        searchStage.close();
+        // Cierra la ventana de búsqueda
+        closeSearchStage();
     }
 
-    public void onSearchButtonClick (String ciudadStr){
-
-    }
-
-    public void setHelloApplication(HelloApplication helloApplication, Stage searchStage, MainController mainController) {
-        this.helloApplication = helloApplication;
-        this.searchStage = searchStage;
+    public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void closeSearchStage() {
+        if(searchStage !=null) {
+            searchStage.close();
+        }
+    }
+    public void setSearchStage (Stage searchStage){
+        this.searchStage = searchStage;
     }
 }

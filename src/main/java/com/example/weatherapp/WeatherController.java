@@ -10,28 +10,42 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class WeatherController {
-
     @FXML
     private Label ciudadLabel;
 
-    public WeatherController(){
+    private Stage weatherStage;
 
-    }
+
     public void initialize(String ciudadStr) {
-        ciudadLabel.setText("El tiempo en " + ciudadStr);
-    }
+            ciudadLabel.setText("El tiempo en " + ciudadStr);
+        }
 
-    public void showWeather(String ciudadStr){
-        //logica para mostrar la ventana
-    }
-    public static WeatherController create(String ciudadStr) throws IOException {
-        FXMLLoader loader = new FXMLLoader(WeatherController.class.getResource("weatherwindow.fxml"));
-        Parent root = loader.load();
-        WeatherController weatherController = loader.getController();
-        weatherController.initialize(ciudadStr);
-        return weatherController;
-    }
-    public Parent getView(){
-        return ciudadLabel.getParent();
-    }
+        public void showWeather(String ciudadStr) {
+            // Puedes agregar lógica para mostrar la ventana aquí si es necesario
+            if(weatherStage != null){
+                weatherStage.show();
+            }
+        }
+
+        public WeatherController()  throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("weatherwindow.fxml"));
+            loader.setController(this);
+            Parent root = loader.load();
+
+            // Configurar la hoja de estilos después de cargar el FXML
+            Scene scene = new Scene(root, 300, 300);
+            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
+            this.weatherStage = new Stage();
+            this.weatherStage.setScene(scene);
+        }
+
+            public Stage getWeatherStage () {
+                return weatherStage;
+            }
+
+            public Parent getView () {
+                return ciudadLabel.getParent();
+            }
 }
+
