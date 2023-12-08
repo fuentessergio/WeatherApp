@@ -1,6 +1,9 @@
 package com.example.weatherapp;
 
+import exceptions.NoCiudadException;
+import exceptions.WeatherControllerException;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,30 +33,40 @@ public class MainController {
             this.weatherController = weatherController;
         }
 
-        public void onSearchButtonClick (String ciudadStr){
-            if(ciudadStr.isEmpty()){
-                System.out.println("Introduce alguna ciudad, por favor");
+        public void onSearchButtonClick (String ciudadStr) throws WeatherControllerException, IOException {
+            try{
+                validarCiudad(ciudadStr);
+                handleSearchButtonClick(ciudadStr);
+            } catch (NoCiudadException e){
+                showAlert(Alert.AlertType.ERROR,"¡Error!", e.getMessage());
             }
         }
-
-        public void handleSearchButtonClick(String ciudadStr) {
-            onSearchButtonClick(ciudadStr);
-
+         private void validarCiudad(String ciudadStr) throws NoCiudadException{
+             if(ciudadStr.isEmpty()){
+                 throw new NoCiudadException();
+             }
+         }
+        public void handleSearchButtonClick(String ciudadStr) throws WeatherControllerException {
             try {
-                if (weatherController == null) {
-                    weatherController = new WeatherController();
-                } else {
-                    weatherController.initialize(ciudadStr);
-                }
+                validarCiudad(ciudadStr);
+                // Siempre creo una nueva instancia de WeatherController
+                weatherController = new WeatherController(this);
+                weatherController.initialize(ciudadStr);
 
                 Stage weatherStage = weatherController.getWeatherStage();
                 if (!weatherStage.isShowing()) {
                     weatherStage.show();
                 }
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (NoCiudadException e) {
+                showAlert(Alert.AlertType.ERROR, "¡Error!", e.getMessage());
             }
-            searchController.closeSearchStage();
         }
-    }
+        private void showAlert(Alert.AlertType alertType, String title, String content) {
+            Alert alert = new Alert(alertType);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(content);
+            alert.showAndWait();
+        }
+}
+

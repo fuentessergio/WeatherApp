@@ -1,5 +1,6 @@
 package com.example.weatherapp;
 
+import exceptions.WeatherControllerException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,13 +17,15 @@ public class SearchController {
     private TextField ciudad;
 
     private MainController mainController;
+
     private Stage searchStage;
 
     @FXML
-    protected void onSearchButtonClick() {
+    protected void onSearchButtonClick() throws WeatherControllerException, IOException {
         String ciudadStr = ciudad.getText();
-        mainController.handleSearchButtonClick(ciudadStr);
-
+        if(mainController !=null){
+            mainController.handleSearchButtonClick(ciudadStr);
+        }
         // Cierra la ventana de búsqueda
         closeSearchStage();
     }
@@ -38,5 +41,8 @@ public class SearchController {
     }
     public void setSearchStage (Stage searchStage){
         this.searchStage = searchStage;
+    }
+    public Stage getSearchStage() {
+        return searchStage;
     }
 }

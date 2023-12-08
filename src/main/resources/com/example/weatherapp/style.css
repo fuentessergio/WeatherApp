@@ -1,28 +1,58 @@
-.root {
-    -fx-background-color: #ececec;
+.main-container {
+    -fx-background-color: #3498db; /* Color de fondo del contenedor principal */
+    -fx-padding: 10;
 }
 
 .header {
-    -fx-background-color: #4285f4;
-    -fx-padding: 10;
-    -fx-text-fill: white;
+    -fx-background-color: #3498db; /* Azul */
 }
 
-.app-title {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
+.city-label {
+    -fx-text-fill: #ecf0f1; /* Blanco */
+    -fx-font-size: 18px;
 }
+
 
 .weather-description {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
+    -fx-font-size: 18; /* Tamaño de fuente para la descripción del clima */
+    -fx-text-fill: #ffffff; /* Color del texto */
 }
 
-.temperature {
+.temperature-label {
+    -fx-text-fill: black;
     -fx-font-size: 16px;
 }
-
-.location {
-    -fx-font-size: 20px;
+.prevision{
+    -fx-text-fill: white; /* Cambia el color del texto a blanco */
+    -fx-underline: true;
+    -fx-font-size: 14px; /* Cambia el tamaño de la fuente según sea necesario */
     -fx-font-weight: bold;
+}
+
+/* Estilos para el pronóstico de varios días */
+.forecast-days {
+    -fx-spacing: 10; /* Espaciado entre días del pronóstico */
+    -fx-alignment: CENTER; /* Alinea los días al centro horizontal */
+}
+
+.forecast-day {
+    -fx-max-width: 200;
+    -fx-spacing: 20; /* Espaciado entre elementos de un día del pronóstico */
+    -fx-background-color: #ecf0f1; /* Color de fondo de un día del pronóstico */
+    -fx-padding: 10; /* Relleno interior de un día del pronóstico */
+}
+
+/* Agrega estilos específicos para los días del pronóstico */
+.forecast-day Label {
+    -fx-font-weight: bold;
+
+}
+.day-label {
+    -fx-font-size: 16; /* Tamaño de fuente para el día del pronóstico */
+    -fx-text-fill: black; /* Color del texto */
+}
+.button {
+    -fx-text-fill: black; /* Cambia el color del texto a blanco */
+    -fx-font-size: 14px; /* Cambia el tamaño de la fuente */
+    -fx-font-weight: bold; /* Hace el texto en negrita */
 }
